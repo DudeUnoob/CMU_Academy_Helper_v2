@@ -11,6 +11,8 @@ const apiRouter = require("./router/api/api")
 const loginCmuUser = require("./functions/callCmuApi")
 const isLoggedIn = require("./functions/isLoggedIn")
 const loadSandBoxFiles = require("./functions/loadSandboxFiles")
+const loadFile = require("./functions/loadFile")
+
 
 app.use(bodyParser.json())
 app.use(express.json())
@@ -51,9 +53,12 @@ app.post('/login/user', (req, res, next) => {
       res.send("hello")
   });
 
-  app.get('/files/:id', isLoggedIn, (req, res) => {
-
+  app.get('/files/:id', isLoggedIn, (req, res, next) => {
+    loadFile(req, res, next, req.session.auth_token, req.params.id)
     
+  }, (req, res) => {
+    console.log(req.session.currentFile)
+    res.render('fileData', { file: req.session.currentFile })
   })
 
 server.listen(3000, () => {
