@@ -13,12 +13,12 @@ async function loadSandBoxFiles(req, res, next, apiPath, authToken){
         }, {
             headers: userAuthHeader
         })
-        console.log(data)
 
         req.session.files = data
         return next()
 
     } catch(e) {
+        req.session.destroy()
         return res.send(e.code)
     }
 

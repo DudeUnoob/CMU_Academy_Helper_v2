@@ -11,16 +11,54 @@
             height:600px; 
         }
     </style>
+    <script src="/socket.io/socket.io.js"></script>
 </head>
 <body>
     <h1><%= file.filename %></h1>
-    <p><b>Created by: </b> <%= file.fileOwner %></p>
+    <p ><b>Created by: </b><p id="fileOwner"><%= file.fileOwner %></p></p>
+    <p ><b>Share Code: </b><p id="shareCode"><%= file.shareCode %></p></p>
     <textarea id="formatted-input" readonly><%= file.content %></textarea>
+    
+    <form id="form">
+        <input id="recievedUser" type="text" name="recievedUser" required />
+        <input type="submit"/>
+    </form>
 </body>
 <script>
+    var socket = io()
 let formattedInput = document.getElementById("formatted-input").value.replace(/\n,/g, "\n")
 
 document.getElementById("formatted-input").value = formattedInput
+
+async function sendFile(e){
+    e.preventDefault();
+    const recievedUser = document.getElementById("recievedUser")
+    const fileOwner = document.getElementById("fileOwner")
+    const shareCode = document.getElementById("shareCode")
+
+
+    const response = await fetch('/user/sendFile', {
+        method:"post",
+        body:JSON.stringify({
+            recievedUser: recievedUser.value,
+            fileOwner: fileOwner.textContent,
+            shareCode: shareCode.textContent,
+            codeScript: formattedInput
+        }),
+        headers:{
+            "Content-Type":"application/json"
+        }
+    })
+
+    const finalResponse = response.json()
+    socket.emit("connection_user", { recievedUser: recievedUser.value, fileOwner: fileOwner.textContent, shareCode: shareCode.textContent, codeScript: formattedInput })
+
+}
+
+const form = document.getElementById("form")
+
+form.addEventListener("submit", sendFile)
+
 
 </script>
 </html>

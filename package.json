@@ -8,6 +8,7 @@
     "express-session": "^1.17.3",
     "node-fetch": "^3.3.0",
     "nodemon": "^2.0.20",
+    "redis-om": "^0.3.6",
     "socket.io": "^4.6.1"
   },
   "scripts": {

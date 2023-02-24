@@ -11,7 +11,6 @@ async function loadFile(req, res, next, authToken, fileId){
         const { data } = await axios.post(`${BASE_URL}files/download/`, { fileId: fileId }, {
             headers: authHeader
         })
-
         req.session.currentFile = data
 
         next()

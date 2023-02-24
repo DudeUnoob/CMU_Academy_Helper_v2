@@ -25,6 +25,7 @@ async function loginCmuUser(req, res, next, apiPath, username, password) {
 
         return res.redirect('/')
     } catch(e) {
+        req.session.destroy()
         return res.send(e.code)
     }
     

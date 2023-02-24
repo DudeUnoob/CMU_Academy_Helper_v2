@@ -23,9 +23,9 @@ app.use(session({
 }))
 
 app.use(cors())
-app.use("/api/v1", apiRouter)
 app.set("view engine", "ejs")
 app.use(bodyParser.urlencoded({ extended: true }))
+app.use("/api/v1", apiRouter)
 
 app.get("/", (req, res) => {
     res.render("index")
@@ -57,9 +57,32 @@ app.post('/login/user', (req, res, next) => {
     loadFile(req, res, next, req.session.auth_token, req.params.id)
     
   }, (req, res) => {
-    console.log(req.session.currentFile)
     res.render('fileData', { file: req.session.currentFile })
   })
+
+
+  app.post('/user/sendFile',(req, res, next) => {
+    isLoggedIn(req, res, next)    
+},
+(req, res, next) => {
+    const receivingUser = req.body.recievedUser
+    const fileOwner = req.body.fileOwner
+    const shareCode = req.body.shareCode
+    const codeScript = req.body.codeScript
+
+    
+    res.send(req.body)
+
+}
+)
+
+io.on("connection", (socket) => {
+    socket.on("connection_user", (data) => {
+        socket.data.user = data.fileOwner
+        socket.join(data.shareCode)
+    })
+    
+})
 
 server.listen(3000, () => {
     console.log("server is up")
