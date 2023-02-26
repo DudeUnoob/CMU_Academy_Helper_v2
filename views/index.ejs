@@ -1,16 +1,127 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>CMU Helper</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Balsamiq+Sans&display=swap');
+
+        body {
+            background-color: #202020;
+        }
+
+        header {
+            background-color: #474747;
+            height: 80px;
+            display: flex;
+            align-items: center;
+        }
+
+        nav {
+            margin: 0 auto;
+        }
+
+        ul {
+            display: flex;
+            list-style-type: none;
+        }
+
+        li {
+            margin-right: 20px;
+        }
+
+        a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 18px;
+            cursor: pointer;
+            transition: all 0.5s;
+        }
+
+        a:hover, button:hover {
+            color: #6ea3f3;
+        }
+
+        button {
+            transition: all 0.5s;
+        }
+
+        button:hover {
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.3), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            font-family: 'Balsamiq Sans', cursive;
+            color: white;
+        }
+
+        main {
+            margin: 0 auto;
+            width: 90%;
+            max-width: 1200px;
+        }
+
+        section {
+            padding: 50px 0;
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 48px;
+            margin-bottom: 20px;
+        }
+
+        p {
+            font-size: 24px;
+            margin-bottom: 30px;
+        }
+
+        button {
+            background-color: #333;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            font-size: 18px;
+            cursor: pointer;
+        }
+
+        @media only screen and (max-width: 768px) {
+            header {
+                height: auto;
+            }
+
+            nav {
+                text-align: center;
+            }
+
+            ul {
+                flex-direction: column;
+            }
+
+            li {
+                margin-right: 0;
+                margin-bottom: 10px;
+            }
+        }
+    </style>
 </head>
+
 <body>
-    <h1>Welcome to the CMU Code Share Application</h1>
+    <!-- <h1>Welcome to the CMU Code Share Application</h1>
     <p>Made by <a href="https://www.instagram.com/damodar_kamanii/"><b>@dom</b></a></p>
     <p>(Still in development)</p>
-    <a href="/login">Login</a>
+    <% if(loginStatus != null){ %>
+        <a href="/logout">Logout</a>
+   <% } else { %>
+        <a href="/login">Login</a>
+   <% } %>
     <br />
     <br />
     <a href="/files/user">Files</a>
@@ -19,6 +130,32 @@
     <a href="/api/v1/user/get-shared-files">View files shared to you</a>
     <br />
     <br />
-    <a href="/user/files-shared">View files you shared</a>
+    <a href="/user/files-shared">View files you shared</a> -->
+
+    <header>
+        <nav>
+            <ul>
+                <li><a href="/">Home</a></li>
+                <% if(loginStatus !=null){ %>
+                    <li><a href="/logout">Logout</a></li>
+                    <li><a href="/files/user">Files</a></li>
+                    <li><a href="/api/v1/user/get-shared-files">View files shared to you</a></li>
+                    <li><a href="/user/files-shared">View files you shared</a></li>
+                    <% } else { %>
+                        <li><a href="/login">Login</a></li>
+                        <% } %>
+
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section>
+            <h1>Welcome to CMU Helper</h1>
+            <p>Sharing code has never been easier 😎</p>
+            <button onclick="window.location.href = '/login'">Get Started</button>
+        </section>
+    </main>
 </body>
+
 </html>

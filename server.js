@@ -31,7 +31,7 @@ app.use(bodyParser.urlencoded({ extended: true }))
 app.use("/api/v1", apiRouter)
 
 app.get("/", (req, res) => {
-    res.render("index")
+    res.render("index", { loginStatus: req.session.username })
 })
 
 app.get("/login",  (req, res) => {
@@ -41,6 +41,11 @@ app.get("/login",  (req, res) => {
     res.render("login")
 })
 
+app.get('/logout', isLoggedIn, (req, res) => {
+    req.session.destroy()
+
+    res.redirect('/')
+})
 app.get('/files/user', isLoggedIn, (req, res,next) => {
     loadSandBoxFiles(req, res, next, "files/list-files", req.session.auth_token)
     
