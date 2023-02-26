@@ -1,3 +1,4 @@
 {
-    "BASE_URL":"https://backend.academy.cs.cmu.edu/api/v0/"
+    "BASE_URL":"https://backend.academy.cs.cmu.edu/api/v0/",
+    "databaseConnectionString":"mongodb+srv://ZeroX:Balaram26@cluster0.b2lzi.mongodb.net/?retryWrites=true&w=majority"
 }

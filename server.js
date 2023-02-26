@@ -61,28 +61,13 @@ app.post('/login/user', (req, res, next) => {
   })
 
 
-  app.post('/user/sendFile',(req, res, next) => {
-    isLoggedIn(req, res, next)    
-},
-(req, res, next) => {
-    const receivingUser = req.body.recievedUser
-    const fileOwner = req.body.fileOwner
-    const shareCode = req.body.shareCode
-    const codeScript = req.body.codeScript
-
-    
-    res.send(req.body)
-
-}
-)
+  
 
 io.on("connection", (socket) => {
-    socket.on("connection_user", (data) => {
-        socket.data.user = data.fileOwner
-        socket.join(data.shareCode)
-    })
+    
     
 })
+
 
 server.listen(3000, () => {
     console.log("server is up")

@@ -23,6 +23,9 @@
         <input id="recievedUser" type="text" name="recievedUser" required />
         <input type="submit"/>
     </form>
+    <div id="custom-div-container">
+        <p id="custom-id"></p>
+    </div>
 </body>
 <script>
     var socket = io()
@@ -35,9 +38,9 @@ async function sendFile(e){
     const recievedUser = document.getElementById("recievedUser")
     const fileOwner = document.getElementById("fileOwner")
     const shareCode = document.getElementById("shareCode")
+    const divCustomId = document.getElementById("custom-id")
 
-
-    const response = await fetch('/user/sendFile', {
+    const response = await fetch('/api/v1/user/sendFile', {
         method:"post",
         body:JSON.stringify({
             recievedUser: recievedUser.value,
@@ -50,9 +53,9 @@ async function sendFile(e){
         }
     })
 
-    const finalResponse = response.json()
-    socket.emit("connection_user", { recievedUser: recievedUser.value, fileOwner: fileOwner.textContent, shareCode: shareCode.textContent, codeScript: formattedInput })
+    const finalResponse = await response.json()
 
+    console.log(finalResponse)
 }
 
 const form = document.getElementById("form")
