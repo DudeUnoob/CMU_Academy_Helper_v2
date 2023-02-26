@@ -4,6 +4,7 @@ const isLoggedIn = require("../../functions/isLoggedIn")
 const bodyParser = require("body-parser")
 const mongoModel = require("../../router/lib/mongoModel");
 const mongoMicroservice = require("../../functions/microservices/databaseService");
+const importFile = require("../../functions/importFile");
 
 const router = express.Router()
 
@@ -63,5 +64,10 @@ router.get('/user/current-shared-file', (req, res, next) => {
     res.json(req.session.currentSharedFiles)
 })
 
+router.post('/import/file',isLoggedIn,(req, res, next) => {
+    importFile(req, res,next, req.session.auth_token, req.session.username, req.body.fileTitle, req.body.codeScript)
+}, (req, res) => {
+    res.redirect('/files/user')
+})
 
 module.exports = router

@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+         textarea {
+            width: 75%;
+            height:600px; 
+        }
+
+        input {
+            width: 50%;
+            margin: auto;
+        }
+    </style>
+</head>
+<body>
+    <textarea id="formatted-input" readonly>
+        <%= file %>
+    </textarea>
+
+    <h1>Import and Save this file to your sandbox</h1>
+    <form id="form">
+        <input type="text" id="fileTitle" name="fileTitle" placeholder="Name your file" required/>
+        <input type="submit"/>
+    </form>
+    <p id="error_body"></p>
+
+    <script>
+       let formattedInput = document.getElementById("formatted-input").value.replace(/\n,/g, "\n")
+       document.getElementById("formatted-input").value = formattedInput
+
+       const fileTitle =document.getElementById("fileTitle")
+
+       async function importFile(e) {
+        e.preventDefault()
+        const response = await fetch('/api/v1/import/file', {
+            method:"post",
+            body:JSON.stringify({
+                fileTitle: fileTitle.value,
+                codeScript: formattedInput
+            }),
+            headers:{
+                "Content-Type":"application/json"
+            }
+        })
+
+        const finalResponse = await response.json()
+        const errorBody = document.getElementById("error_body")
+
+        if(finalResponse.message){
+
+            errorBody.innerHTML = finalResponse.message + ` <b>(This error was most likely caused because you already have a file with the same title)</b>`
+        } else if(finalResponse.success){
+            errorBody.innerHTML = `<b>${finalResponse.success}</b>`
+        }
+       }
+        
+       const form = document.getElementById("form")
+
+       form.addEventListener("submit", importFile)
+
+       
+    </script>
+</body>
+</html>
