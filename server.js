@@ -12,6 +12,8 @@ const loginCmuUser = require("./functions/callCmuApi")
 const isLoggedIn = require("./functions/isLoggedIn")
 const loadSandBoxFiles = require("./functions/loadSandboxFiles")
 const loadFile = require("./functions/loadFile")
+const mongoModel = require("./router/lib/mongoModel")
+
 
 
 app.use(bodyParser.json())
@@ -66,6 +68,19 @@ app.post('/login/user', (req, res, next) => {
 io.on("connection", (socket) => {
     
     
+})
+
+app.get('/user/files/:documentId', isLoggedIn, (req, res, next) => {
+
+    const { documentId } = req.params
+
+    mongoModel.findById(documentId, async (err, data) => {
+        if(data.recievingUser == req.session.username){
+            return res.json(data.codeData)
+        } else{
+            return res.status(400).send("You are not authorized to view this file or this is not a valid file")
+        }
+    })
 })
 
 

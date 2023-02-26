@@ -10,8 +10,11 @@ const Schema = new mongoose.Schema({
     recievingUser: String,
     codeData: String,
     shareCode: String,
-    createdAt: { type: Date, default: Date.now, expires: 600 }
+    fileTitle: String,
+    expiration: { type: Date, required: true }
     
 })
+
+Schema.index({ expiration: 1}, { expireAfterSeconds: 0 })
 
 module.exports = mongoose.model("CMU_Scripts", Schema)

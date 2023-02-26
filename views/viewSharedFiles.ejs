@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .card {
+  /* Add shadows to create the "card" effect */
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  transition: 0.3s;
+}
+
+.card:hover {
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+  cursor: pointer;
+}
+
+.container {
+  padding: 2px 16px;
+}
+    </style>
+</head>
+<body>
+    <div id="documents">
+
+    </div>
+</body>
+<script>
+    const documentDiv = document.getElementById("documents")
+    fetch('/api/v1/user/current-viewed-file')
+    .then(res => res.json()).then(data => {
+
+        data.map((elm, i) => {
+            const titleCard = document.createElement("h1")
+            titleCard.textContent = elm.fileTitle
+
+            const authorCard = document.createElement("p")
+            authorCard.textContent = `By: ${elm.fileOwner}`
+
+            const divCard = document.createElement("div")
+            const divContainer = document.createElement("div")
+            divContainer.setAttribute("class", "container")
+
+            divCard.setAttribute("class", "card")
+            const createAtag = document.createElement("a")
+            createAtag.setAttribute("href", `/user/files/${elm._id}`)
+            createAtag.textContent = elm._id
+
+            divContainer.appendChild(titleCard)
+            divContainer.appendChild(authorCard)
+            divContainer.appendChild(createAtag)
+            divCard.appendChild(divContainer)
+            documentDiv.appendChild(divCard)
+        })
+    })
+</script>
+</html>

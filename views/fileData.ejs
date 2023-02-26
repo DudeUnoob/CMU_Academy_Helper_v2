@@ -10,35 +10,44 @@
             width: 75%;
             height:600px; 
         }
+
+        input {
+            width: 50%;
+            margin: auto;
+        }
     </style>
     <script src="/socket.io/socket.io.js"></script>
 </head>
 <body>
-    <h1><%= file.filename %></h1>
+    <h1 id="fileTitle"><%= file.filename %></h1>
     <p ><b>Created by: </b><p id="fileOwner"><%= file.fileOwner %></p></p>
     <p ><b>Share Code: </b><p id="shareCode"><%= file.shareCode %></p></p>
-    <textarea id="formatted-input" readonly><%= file.content %></textarea>
-    
+
     <form id="form">
-        <input id="recievedUser" type="text" name="recievedUser" required />
+        <input id="recievedUser" type="text" name="recievedUser" placeholder="Enter CMU Username you want to send file to" required />
         <input type="submit"/>
     </form>
     <div id="custom-div-container">
         <p id="custom-id"></p>
+        <p>View all files shared to you <a href="/api/v1/user/get-shared-files">here</a></p>
     </div>
+    <textarea id="formatted-input" readonly><%= file.content %></textarea>
+    
+    
 </body>
 <script>
     var socket = io()
 let formattedInput = document.getElementById("formatted-input").value.replace(/\n,/g, "\n")
 
 document.getElementById("formatted-input").value = formattedInput
-
+const pCustomId = document.getElementById("custom-id")
 async function sendFile(e){
     e.preventDefault();
     const recievedUser = document.getElementById("recievedUser")
     const fileOwner = document.getElementById("fileOwner")
     const shareCode = document.getElementById("shareCode")
     const divCustomId = document.getElementById("custom-id")
+    const fileTitle = document.getElementById("fileTitle")
 
     const response = await fetch('/api/v1/user/sendFile', {
         method:"post",
@@ -46,7 +55,8 @@ async function sendFile(e){
             recievedUser: recievedUser.value,
             fileOwner: fileOwner.textContent,
             shareCode: shareCode.textContent,
-            codeScript: formattedInput
+            codeScript: formattedInput,
+            fileTitle: fileTitle.textContent
         }),
         headers:{
             "Content-Type":"application/json"
@@ -56,6 +66,8 @@ async function sendFile(e){
     const finalResponse = await response.json()
 
     console.log(finalResponse)
+    pCustomId.textContent = `The custom id of the document is: ${finalResponse.documentId}`
+
 }
 
 const form = document.getElementById("form")
