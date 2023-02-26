@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <title>CMU Helper</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Balsamiq+Sans&display=swap');
@@ -110,6 +111,62 @@
                 margin-bottom: 10px;
             }
         }
+
+        footer{
+    
+    bottom: 0 !important; 
+    left: 0;
+    right: 0;
+    background: #474747;
+    height: auto;
+    margin: auto;
+    width: 100vw;
+    padding-top: 40px;
+    color: white;
+    position: absolute;
+}
+.footer-content {
+  display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    text-align: center;
+}
+.footer-content h3 {
+  font-size: 2.1rem;
+  font-weight: 500;
+  text-transform: capitalize;
+  line-height: 3rem;
+}
+.footer-content p{
+    max-width: 500px;
+    line-height: 28px;
+    font-size: 14px;
+   
+}
+.socials{
+    list-style: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 1rem 0 3rem 0;
+    
+}
+ 
+.socials li{
+    margin: 0 10px;
+    transition: all 0.5s;
+}
+ 
+.socials a{
+    background: transparent;
+    
+}
+
+.socials li:hover {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.3), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    border-radius: 9px;
+}
     </style>
 </head>
 
@@ -156,6 +213,22 @@
             <button onclick="window.location.href = '/login'">Get Started</button>
         </section>
     </main>
+
+
+    <footer>
+        <div class="footer-content">
+          <h3>About This</h3>
+          <p>Randomly Decided to make this 🤷‍♂️</p>
+          <p style="font-style: italic; color: rgb(214, 214, 214);">dom ✌</p>
+    
+          
+            <div class="socials">
+            <li><a href="https://www.linkedin.com/in/damodar-kamani-a7204123a/" target="_blank"><i class="fa fa-linkedin-square" style="font-size: 36px;"></i></a></li>
+            <li><a href="https://www.instagram.com/damodar_kamanii/" target="_blank"><i class="fa fa-instagram" style="font-size: 36px;"></i></a></li>
+            <li><a href="https://github.com/dudeunoob" target="_blank"><i class="fa fa-github" style="font-size: 36px;"></i></a></li>
+          </div>
+      </div>
+      </footer>
 </body>
 
 </html>
