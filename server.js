@@ -13,6 +13,7 @@ const isLoggedIn = require("./functions/isLoggedIn")
 const loadSandBoxFiles = require("./functions/loadSandboxFiles")
 const loadFile = require("./functions/loadFile")
 const mongoModel = require("./router/lib/mongoModel")
+const mongoMicroservice = require("./functions/microservices/databaseService")
 
 
 
@@ -75,12 +76,19 @@ app.get('/user/files/:documentId', isLoggedIn, (req, res, next) => {
     const { documentId } = req.params
 
     mongoModel.findById(documentId, async (err, data) => {
-        if(data.recievingUser == req.session.username){
+        if(data.recievingUser == req.session.username || data.fileOwner == req.session.username){
             return res.json(data.codeData)
         } else{
             return res.status(400).send("You are not authorized to view this file or this is not a valid file")
         }
     })
+})
+const REDIS_GET_SHARED_FILES_ACTION = { type:"getSharedFiles"}
+
+app.get('/user/files-shared', isLoggedIn, (req, res, next) => {
+    mongoMicroservice(req, res, next, null, req.session.username, null, null,REDIS_GET_SHARED_FILES_ACTION, null)
+}, (req, res, next) => {
+    res.send({ message: 'access' })
 })
 
 

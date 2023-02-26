@@ -29,33 +29,33 @@
 </body>
 <script>
     const documentDiv = document.getElementById("documents")
-    fetch('/api/v1/user/current-viewed-file')
-    .then(res => res.json()).then(data => {
-
-        data.map((elm, i) => {
-            const titleCard = document.createElement("h1")
-            titleCard.textContent = elm.fileTitle
+    fetch('/api/v1/user/current-shared-file')
+        .then(res => res.json())
+        .then(data => {
+            data.map((elm ,i ) => {
+                const titleCard = document.createElement("h1")
+                titleCard.textContent = elm.fileTitle
 
             const authorCard = document.createElement("p")
-            authorCard.textContent = `By: ${elm.fileOwner}`
+            authorCard.textContent = `Shared to: ${elm.recievingUser}`
 
             const divCard = document.createElement("div")
             const divContainer = document.createElement("div")
             divContainer.setAttribute("class", "container")
-
+            
             divCard.onclick = function() {  window.location.href = `/user/files/${elm._id}`}
-
             divCard.setAttribute("class", "card")
             const createAtag = document.createElement("a")
             createAtag.setAttribute("href", `/user/files/${elm._id}`)
             createAtag.textContent = elm._id
-
+            
+            
             divContainer.appendChild(titleCard)
             divContainer.appendChild(authorCard)
             divContainer.appendChild(createAtag)
             divCard.appendChild(divContainer)
             documentDiv.appendChild(divCard)
+            })
         })
-    })
 </script>
 </html>

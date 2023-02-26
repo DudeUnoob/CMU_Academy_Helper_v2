@@ -59,6 +59,9 @@ router.get('/user/current-viewed-file', (req, res, next) => {
     res.json(req.session.currentView)
 })
 
+router.get('/user/current-shared-file', (req, res, next) => {
+    res.json(req.session.currentSharedFiles)
+})
 
 
 module.exports = router

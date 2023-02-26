@@ -21,13 +21,23 @@ async function mongoMicroservice(req, res, next, receivingUser, fileOwner, share
 
        
     } 
-    else {
+    else if(REDIS_ACTION.type == "getShareCode") {
          mongoModel.find({ recievingUser: receivingUser }, async(err, data) => {
             if(data){
                 req.session.currentView = data
                 return res.render('viewSharedFiles')
             } else {
                 return res.status(400).send("Ooops looks like no data!")
+            }
+        })
+    }
+    else if(REDIS_ACTION.type == "getSharedFiles"){
+        mongoModel.find({ fileOwner: fileOwner }, async(err, data) => {
+            if(data){
+                req.session.currentSharedFiles = data
+                return res.render("currentSharedFiles")
+            } else {
+                return res.status(400).send("oops looks like no data!")
             }
         })
     }

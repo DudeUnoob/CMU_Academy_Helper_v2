@@ -64,9 +64,9 @@ async function sendFile(e){
     })
 
     const finalResponse = await response.json()
-
+    
     console.log(finalResponse)
-    pCustomId.textContent = `The custom id of the document is: ${finalResponse.documentId}`
+    pCustomId.innerHTML = `<b>The custom id of the document is <a href=/user/files/${finalResponse.documentId}>${finalResponse.documentId}</a> and will expire after 10 minutes!!!</b>`
 
 }
 
