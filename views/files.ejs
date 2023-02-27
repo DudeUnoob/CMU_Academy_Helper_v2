@@ -7,7 +7,6 @@
     <title>Document</title>
     <style>
          @import url('https://fonts.googleapis.com/css2?family=Balsamiq+Sans&display=swap');
-
          .title_vids{
         display: flex;
         flex-direction: column;
@@ -46,6 +45,7 @@
     }
     * {
   margin: 0;
+
   padding: 0;
   box-sizing: border-box;
   font-family: 'Fredoka One', cursive;
@@ -153,20 +153,66 @@ body {
     justify-content: center;
   }
 }
-
 * {
     text-decoration: none;
     color: white;
     font-weight: bolder;
 }
+
+input[type="text"] {
+  padding: 10px;
+  border: 2px solid #ddd;
+  border-radius: 5px;
+  font-size: 16px;
+  color: #000000;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+  transition: border-color 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+  float: right;
+  margin: 12px;
+} 
+
+
+input[type="text"]:focus {
+  outline: none;
+  border-color: #1E90FF;
+  box-shadow: 0px 0px 10px rgba(30, 144, 255, 0.4);
+}
+
+
     </style>
 </head>
 <body>
+  <input type="text" id="searchInput" onkeyup="searchList()" placeholder="Search for a file...🔍"/>
+  <div id="documents">
     <% files.files.map((elm, i) => { %>
         <div class="card" onclick="window.location.href = '/files/<%= elm.id %>'">
         <!-- <a href=/files/<%= elm.id %>><%= elm.path %></a> -->
         <h2><%= elm.path %></h2> 
         </div>
     <% }) %>
+  </div>
+
+  <script>
+    function searchList() {
+  // Declare variables
+  let input, filter, divs, lis, txtValue;
+  input = document.getElementById('searchInput');
+  filter = input.value.toUpperCase();
+  divs = document.getElementById('documents').getElementsByTagName('div');
+
+  // Loop through all divs, and loop through their li children, and hide those that don't match the search query
+  for (let i = 0; i < divs.length; i++) {
+    lis = divs[i].getElementsByTagName('h2');
+    for (let j = 0; j < lis.length; j++) {
+      txtValue = lis[j].textContent || lis[j].innerText;
+      if (txtValue.toUpperCase().indexOf(filter) > -1) {
+        divs[i].style.display = '';
+      } else {
+        divs[i].style.display = 'none';
+      }
+    }
+  }
+}
+  </script>
 </body>
 </html>
