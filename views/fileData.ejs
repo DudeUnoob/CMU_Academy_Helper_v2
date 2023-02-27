@@ -45,7 +45,7 @@
   border: 2px solid #ddd;
   border-radius: 5px;
   font-size: 16px;
-  color: #555;
+  color: #f0f0f0;
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
   transition: border-color 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
   width: 50%;
@@ -107,8 +107,15 @@ async function sendFile(e){
 
     const finalResponse = await response.json()
     
-    console.log(finalResponse)
-    pCustomId.innerHTML = `<b>The custom id of the document is <a href=/user/files/${finalResponse.documentId}>${finalResponse.documentId}</a> and will expire after 10 minutes!!!</b>`
+    
+    console.log(finalResponse.message)
+    if(finalResponse?.message == "Oops you can't share a file with yourself!"){
+        
+        pCustomId.innerHTML = `<b>Oops you can't send a file to yourself!</b>`
+    
+    } else {
+        pCustomId.innerHTML = `<b>The custom id of the document is <a href=/user/files/${finalResponse.documentId}>${finalResponse.documentId}</a> and will expire after 10 minutes!!!</b>`
+    }
 
 }
 

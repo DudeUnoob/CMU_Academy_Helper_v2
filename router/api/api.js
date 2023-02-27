@@ -40,8 +40,14 @@ router.post('/user/sendFile', (req, res, next) => {
     const shareCode = req.body.shareCode
     const codeScript = req.body.codeScript
     const fileTitle = req.body.fileTitle
+
+    if(receivingUser == req.session.username) {
+        return res.status(400).send({ message: "Oops you can't share a file with yourself!" })
+    } else {
+        mongoMicroservice(req, res, next, receivingUser,fileOwner, shareCode, codeScript, REDIS_CREATE_ACTION, fileTitle)
+
+    }
    // redisMicroservice(req, res, next, receivingUser, fileOwner, shareCode, codeScript, REDIS_CREATE_ACTION)
-   mongoMicroservice(req, res, next, receivingUser,fileOwner, shareCode, codeScript, REDIS_CREATE_ACTION, fileTitle)
 
 })
 

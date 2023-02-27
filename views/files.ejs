@@ -165,7 +165,7 @@ body {
     <% files.files.map((elm, i) => { %>
         <div class="card" onclick="window.location.href = '/files/<%= elm.id %>'">
         <!-- <a href=/files/<%= elm.id %>><%= elm.path %></a> -->
-        <p><%= elm.path %></p> 
+        <h2><%= elm.path %></h2> 
         </div>
     <% }) %>
 </body>

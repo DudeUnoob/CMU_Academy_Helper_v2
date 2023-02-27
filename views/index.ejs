@@ -12,6 +12,8 @@
 
         body {
             background-color: #202020;
+            margin: 0;
+            padding: 0;
         }
 
         header {
@@ -42,7 +44,8 @@
             transition: all 0.5s;
         }
 
-        a:hover, button:hover {
+        a:hover,
+        button:hover {
             color: #6ea3f3;
         }
 
@@ -60,6 +63,7 @@
             padding: 0;
             font-family: 'Balsamiq Sans', cursive;
             color: white;
+            box-sizing: border-box;
         }
 
         main {
@@ -112,60 +116,99 @@
             }
         }
 
-        footer{
-    
-    bottom: 0 !important; 
-    left: 0;
-    right: 0;
-    background: #474747;
-    height: auto;
-    margin: auto;
-    width: 100vw;
-    padding-top: 40px;
-    color: white;
-    position: absolute;
-}
-.footer-content {
-  display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-    text-align: center;
-}
-.footer-content h3 {
-  font-size: 2.1rem;
-  font-weight: 500;
-  text-transform: capitalize;
-  line-height: 3rem;
-}
-.footer-content p{
+        footer {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: #111;
+            height: auto;
+            width: 100vw;
+            padding-top: 40px;
+            color: #fff;
+        }
+
+        .footer-content {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            text-align: center;
+        }
+
+        .footer-content h3 {
+            font-size: 2.1rem;
+            font-weight: 500;
+            text-transform: capitalize;
+            line-height: 3rem;
+        }
+
+        .footer-content p{
     max-width: 500px;
+    margin: 10px auto;
     line-height: 28px;
     font-size: 14px;
-   
+    color: #cacdd2;
 }
+
 .socials{
     list-style: none;
     display: flex;
     align-items: center;
     justify-content: center;
     margin: 1rem 0 3rem 0;
-    
 }
- 
 .socials li{
     margin: 0 10px;
-    transition: all 0.5s;
 }
- 
 .socials a{
-    background: transparent;
+    text-decoration: none;
+    color: #fff;
+    
+    padding: 5px;
     
 }
+.socials a i{
+    font-size: 1.1rem;
+    width: 20px;
+    transition: color .4s ease;
+}
+.socials a:hover i{
+    color: rgb(134, 136, 136);
+    text-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.3), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
 
-.socials li:hover {
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.3), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-    border-radius: 9px;
+.footer-bottom{
+    background: #000;
+    width: 100vw;
+    padding: 20px;
+    padding-bottom: 40px;
+    text-align: center;
+}
+
+.footer-bottom p{
+   float: left;
+   font-size: 14px;
+   word-spacing: 2px;
+   text-transform: capitalize;
+}
+.footer-bottom p a{
+  color:#44bae8;
+  font-size: 16px;
+  text-decoration: none;
+}
+.footer-bottom span{
+    text-transform: uppercase;
+    opacity: .4;
+    font-weight: 200;
+}
+
+.socials li a i{
+    font-size: 26px;
+}
+
+.socials li a:hover {
+    
 }
     </style>
 </head>
@@ -214,21 +257,22 @@
         </section>
     </main>
 
-
     <footer>
         <div class="footer-content">
-          <h3>About This</h3>
-          <p>Randomly Decided to make this 🤷‍♂️</p>
-          <p style="font-style: italic; color: rgb(214, 214, 214);">dom ✌</p>
-    
-          
-            <div class="socials">
-            <li><a href="https://www.linkedin.com/in/damodar-kamani-a7204123a/" target="_blank"><i class="fa fa-linkedin-square" style="font-size: 36px;"></i></a></li>
-            <li><a href="https://www.instagram.com/damodar_kamanii/" target="_blank"><i class="fa fa-instagram" style="font-size: 36px;"></i></a></li>
-            <li><a href="https://github.com/dudeunoob" target="_blank"><i class="fa fa-github" style="font-size: 36px;"></i></a></li>
-          </div>
-      </div>
-      </footer>
+            <h3>@Dom</h3>
+           
+            <h4>I randomly decided to make this 🤷‍♂️</h4>
+            <p></p>
+        </div>
+        <ul class="socials">
+            <li><a href="https://www.linkedin.com/in/damodar-kamani-a7204123a/" target="_blank"><i class="fa fa-linkedin"></i></a></li>
+            <li><a href="https://www.instagram.com/damodar_kamanii/" target="_blank"><i class="fa fa-instagram"></i></a></li>
+            <li><a href="https://github.com/dudeunoob" target="_blank"><i class="fa fa-github"></i></a></li>
+         </ul>
+        
+    </footer>
+
+
 </body>
 
 </html>
