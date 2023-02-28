@@ -6,210 +6,11 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/public/v1/index.css">
     <title>CMU Helper</title>
+    
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Balsamiq+Sans&display=swap');
-
-        body {
-            background-color: #202020;
-            margin: 0;
-            padding: 0;
-        }
-
-        header {
-            background-color: #474747;
-            height: 80px;
-            display: flex;
-            align-items: center;
-        }
-
-        nav {
-            margin: 0 auto;
-        }
-
-        ul {
-            display: flex;
-            list-style-type: none;
-        }
-
-        li {
-            margin-right: 20px;
-        }
-
-        a {
-            color: #fff;
-            text-decoration: none;
-            font-size: 18px;
-            cursor: pointer;
-            transition: all 0.5s;
-        }
-
-        a:hover,
-        button:hover {
-            color: #6ea3f3;
-        }
-
-        button {
-            transition: all 0.5s;
-        }
-
-        button:hover {
-            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.3), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            font-family: 'Balsamiq Sans', cursive;
-            color: white;
-            box-sizing: border-box;
-        }
-
-        main {
-            margin: 0 auto;
-            width: 90%;
-            max-width: 1200px;
-        }
-
-        section {
-            padding: 50px 0;
-            text-align: center;
-        }
-
-        h1 {
-            font-size: 48px;
-            margin-bottom: 20px;
-        }
-
-        p {
-            font-size: 24px;
-            margin-bottom: 30px;
-        }
-
-        button {
-            background-color: #333;
-            color: #fff;
-            padding: 10px 20px;
-            border: none;
-            border-radius: 5px;
-            font-size: 18px;
-            cursor: pointer;
-        }
-
-        @media only screen and (max-width: 768px) {
-            header {
-                height: auto;
-            }
-
-            nav {
-                text-align: center;
-            }
-
-            ul {
-                flex-direction: column;
-            }
-
-            li {
-                margin-right: 0;
-                margin-bottom: 10px;
-            }
-        }
-
-        footer {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            background: #111;
-            height: auto;
-            width: 100vw;
-            padding-top: 40px;
-            color: #fff;
-        }
-
-        .footer-content {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-direction: column;
-            text-align: center;
-        }
-
-        .footer-content h3 {
-            font-size: 2.1rem;
-            font-weight: 500;
-            text-transform: capitalize;
-            line-height: 3rem;
-        }
-
-        .footer-content p{
-    max-width: 500px;
-    margin: 10px auto;
-    line-height: 28px;
-    font-size: 14px;
-    color: #cacdd2;
-}
-
-.socials{
-    list-style: none;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin: 1rem 0 3rem 0;
-}
-.socials li{
-    margin: 0 10px;
-}
-.socials a{
-    text-decoration: none;
-    color: #fff;
-    
-    padding: 5px;
-    
-}
-.socials a i{
-    font-size: 1.1rem;
-    width: 20px;
-    transition: color .4s ease;
-}
-.socials a:hover i{
-    color: rgb(134, 136, 136);
-    text-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.3), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-}
-
-.footer-bottom{
-    background: #000;
-    width: 100vw;
-    padding: 20px;
-    padding-bottom: 40px;
-    text-align: center;
-}
-
-.footer-bottom p{
-   float: left;
-   font-size: 14px;
-   word-spacing: 2px;
-   text-transform: capitalize;
-}
-.footer-bottom p a{
-  color:#44bae8;
-  font-size: 16px;
-  text-decoration: none;
-}
-.footer-bottom span{
-    text-transform: uppercase;
-    opacity: .4;
-    font-weight: 200;
-}
-
-.socials li a i{
-    font-size: 26px;
-}
-
-.socials li a:hover {
-    
-}
+       
     </style>
 </head>
 
@@ -232,22 +33,35 @@
     <br />
     <a href="/user/files-shared">View files you shared</a> -->
 
-    <header>
+    <!-- <header>
         <nav>
-            <ul>
-                <li><a href="/">Home</a></li>
-                <% if(loginStatus !=null){ %>
-                    <li><a href="/logout">Logout</a></li>
-                    <li><a href="/files/user">Files</a></li>
-                    <li><a href="/api/v1/user/get-shared-files">View files shared to you</a></li>
-                    <li><a href="/user/files-shared">View files you shared</a></li>
-                    <% } else { %>
-                        <li><a href="/login">Login</a></li>
-                        <% } %>
-
-            </ul>
-        </nav>
-    </header>
+               <ul>
+                   <li><a href="/">Home</a></li>
+                   <% if(loginStatus !=null){ %>
+                       <li><a href="/logout">Logout</a></li>
+                       <li><a href="/files/user">Files</a></li>
+                       <li><a href="/api/v1/user/get-shared-files">View files shared to you</a></li>
+                       <li><a href="/user/files-shared">View files you shared</a></li>
+                       <% } else { %>
+                           <li><a href="/login">Login</a></li>
+                           <% } %>
+   
+               </ul>
+           </nav>
+           
+       </header> -->
+       <div class="topnav" id="myTopnav">
+        <% if(loginStatus != null){ %>
+            <a class="active" href="/logout">Logout</a>
+            <a href="/files/user">Files</a>
+            <a href="/api/v1/user/get-shared-files">View files shared to you</a>
+            <a href="/user/files-shared">View files you shared</a>
+        <% } else { %>
+            <a href="/login">Login</a>
+        <% } %>
+        <a href="javascript:void(0);" class="icon" onclick="myFunction()">
+        <i class="fa fa-bars"></i></a>
+       </div>
 
     <main>
         <section>
@@ -257,7 +71,7 @@
         </section>
     </main>
 
-    <footer>
+    <!-- <footer>
         <div class="footer-content">
             <h3>@Dom</h3>
            
@@ -270,8 +84,31 @@
             <li><a href="https://github.com/dudeunoob" target="_blank"><i class="fa fa-github"></i></a></li>
          </ul>
         
+    </footer> -->
+    <footer>
+        <div class="footer-content">
+            <h3>About This</h3>
+            <p>Randomly decided to make this to help people 🤷‍♂️</p>
+            <p style="font-style: italic;"><a href="https://www.instagram.com/damodar_kamanii" target="_blank">dom ✌</a></p>
+
+            <div class="socials">
+                <li><a href="https://www.linkedin.com/in/damodar-kamani-a7204123a/" target="_blank"><i class="fa fa-linkedin"></i></a></li>
+            <li><a href="https://www.instagram.com/damodar_kamanii/" target="_blank"><i class="fa fa-instagram"></i></a></li>
+            <li><a href="https://github.com/dudeunoob" target="_blank"><i class="fa fa-github"></i></a></li>
+            </div>
+        </div>
     </footer>
 
+    <script>
+         function myFunction() {
+  var x = document.getElementById("myTopnav");
+  if (x.className === "topnav") {
+    x.className += " responsive";
+  } else {
+    x.className = "topnav";
+  }
+}
+    </script>
 
 </body>
 

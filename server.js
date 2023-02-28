@@ -14,7 +14,7 @@ const loadSandBoxFiles = require("./functions/loadSandboxFiles")
 const loadFile = require("./functions/loadFile")
 const mongoModel = require("./router/lib/mongoModel")
 const mongoMicroservice = require("./functions/microservices/databaseService")
-
+const publicRouter = require("./router/public/public")
 
 
 app.use(bodyParser.json())
@@ -29,6 +29,7 @@ app.use(cors())
 app.set("view engine", "ejs")
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use("/api/v1", apiRouter)
+app.use('/public/v1', publicRouter)
 
 app.get("/", (req, res) => {
     res.render("index", { loginStatus: req.session.username })

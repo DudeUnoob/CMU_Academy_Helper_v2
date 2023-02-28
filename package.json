@@ -9,12 +9,13 @@
     "mongoose": "^6.10.0",
     "node-fetch": "^3.3.0",
     "nodemon": "^2.0.20",
+    "path": "^0.12.7",
     "socket.io": "^4.6.1",
     "uuid": "^9.0.0"
   },
   "scripts": {
     "dev": "nodemon server",
-    "start":"node server",
+    "start": "node server",
     "build": "node server"
   }
 }
