@@ -136,10 +136,11 @@ footer {
 .footer-content p{
 max-width: 500px;
 margin: 10px auto;
-line-height: 28px;
+line-height: 14px;
 font-size: 14px;
 color: #cacdd2;
 }
+
 
 .socials{
 list-style: none;
@@ -270,11 +271,20 @@ font-size: 26px;
       text-align: left;
       
     }
+
+    video {
+        width: 100%;
+        height: auto;
+    }
+
+    p#motto-line {
+        margin-bottom: 20px;
+    }
 }
 
 a:hover {
     transform: scale(1.05);
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.3), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    /* box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.3), 0 6px 20px 0 rgba(0, 0, 0, 0.19); */
 }
 
 .video-container {
