@@ -275,12 +275,14 @@ font-size: 26px;
     video {
         width: 100%;
         height: auto;
+        overflow-x: hidden;
     }
 
     p#motto-line {
         margin-bottom: 20px;
     }
 }
+
 
 a:hover {
     transform: scale(1.05);
