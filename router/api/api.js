@@ -76,4 +76,8 @@ router.post('/import/file',isLoggedIn,(req, res, next) => {
     res.redirect('/files/user')
 })
 
+router.get('/current/import-view-file', (req, res) => {
+    res.send(req.session.currentFileData)
+})
+
 module.exports = router

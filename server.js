@@ -83,7 +83,8 @@ app.get('/user/files/:documentId', isLoggedIn, (req, res, next) => {
 
     mongoModel.findById(documentId, async (err, data) => {
         if(data.recievingUser == req.session.username || data.fileOwner == req.session.username){
-            return res.render('importFile', { file: data.codeData })
+            req.session.currentFileData =  { file: data.codeData }
+            return res.render('importFile')
         } else{
             return res.status(400).send("You are not authorized to view this file or this is not a valid file")
         }

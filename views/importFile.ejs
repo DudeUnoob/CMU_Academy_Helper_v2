@@ -12,7 +12,6 @@
 </head>
 <body>
     <textarea id="formatted-input" readonly>
-        <%= file %>
     </textarea>
 
     <h1>Import and Save this file to your sandbox</h1>
@@ -23,10 +22,16 @@
     <p id="error_body"></p>
 
     <script>
+        fetch('/api/v1/current/import-view-file').then(res => res.json()).then(data => {
+            document.getElementById("formatted-input").value = data.file
+        })
+         
        let formattedInput = document.getElementById("formatted-input").value.replace(/\n,/g, "\n")
        document.getElementById("formatted-input").value = formattedInput
 
        const fileTitle =document.getElementById("fileTitle")
+
+       
 
        async function importFile(e) {
         e.preventDefault()
@@ -34,7 +39,7 @@
             method:"post",
             body:JSON.stringify({
                 fileTitle: fileTitle.value,
-                codeScript: formattedInput
+                codeScript: document.getElementById("formatted-input").value
             }),
             headers:{
                 "Content-Type":"application/json"
