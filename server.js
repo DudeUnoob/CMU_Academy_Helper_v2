@@ -98,6 +98,11 @@ app.get('/user/files-shared', isLoggedIn, (req, res, next) => {
     res.redirect('/files/user')
 })
 
+app.get('/user/copy-paste', isLoggedIn, (req, res, next) => {
+
+    res.render("copyPaste")
+})
+
 
 server.listen(process.env.PORT || 3000, () => {
     console.log("server is up")

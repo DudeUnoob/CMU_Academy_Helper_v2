@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/public/v1/importFile.css">
+    <title>Document</title>
+    <style>
+        
+    </style>
+</head>
+<body>
+    
+    <h1>Copy Paste any Code to upload to your CMU Sandbox</h1>
+    <form id="form">
+        <input type="text" id="fileTitle" name="fileTitle" placeholder="Name your file" required/>
+        <input type="submit"/>
+    </form>
+    <p id="error_body"></p>
+    <textarea id="formatted-input">
+    </textarea>
+
+    
+
+    <script>
+       
+        
+        
+         
+       
+
+
+       
+
+       async function importFile(e) {
+    e.preventDefault();
+    const formattedInput = JSON.stringify(document.getElementById("formatted-input").value);
+    
+        const fileTitle = document.getElementById("fileTitle").value
+
+        const response = await fetch('/api/v1/copy-paste', {
+            method:"post",
+            body:JSON.stringify({
+                path: fileTitle,
+                content: formattedInput
+            }),
+            headers: {
+                "Content-Type":"application/json"
+            }
+        }).then((res) => res.json())
+        .then(data => {
+            if(data.success) {
+                document.getElementById("error_body").innerHTML = data.success
+            } else {
+                document.getElementById("error_body").innerHTML = data.message + ` (This error most likely occured because you have another file with the same name!)`
+
+            } 
+            
+        })
+        .catch((error) => console.log(error))
+
+}
+        
+       const form = document.getElementById("form")
+
+       form.addEventListener("submit", importFile)
+
+       
+    </script>
+</body>
+</html>

@@ -5,6 +5,7 @@ const bodyParser = require("body-parser")
 const mongoModel = require("../../router/lib/mongoModel");
 const mongoMicroservice = require("../../functions/microservices/databaseService");
 const importFile = require("../../functions/importFile");
+const uploadFileCopyPaste = require("../../functions/uploadFileCopyPaste")
 
 const router = express.Router()
 
@@ -78,6 +79,13 @@ router.post('/import/file',isLoggedIn,(req, res, next) => {
 
 router.get('/current/import-view-file', (req, res) => {
     res.send(req.session.currentFileData)
+})
+
+router.post('/copy-paste', (req, res, next) => {
+    const { path, content } = req.body 
+    uploadFileCopyPaste(req, res, next, req.session.auth_token, req.session.username, path, content)
+}, (req, res) => {
+    res.send("hmmm")
 })
 
 module.exports = router

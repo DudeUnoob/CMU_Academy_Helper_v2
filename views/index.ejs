@@ -54,8 +54,10 @@
         <% if(loginStatus != null){ %>
             <a class="active" href="/logout">Logout</a>
             <a href="/files/user">Files</a>
+            <a href="/user/copy-paste" style="color:gold"><b style="color: rgb(247, 235, 168);">Copy Paste Code</b></a>
             <a href="/api/v1/user/get-shared-files">View files shared to you</a>
             <a href="/user/files-shared">View files you shared</a>
+            <a href="/user/copy-paste">Copy Paste Code</a>
         <% } else { %>
             <a href="/login">Login</a>
         <% } %>
