@@ -19,7 +19,7 @@ async function loadSandBoxFiles(req, res, next, apiPath, authToken){
 
     } catch(e) {
         req.session.destroy()
-        return res.send(e.code)
+        return res.redirect('/')
     }
 
 }

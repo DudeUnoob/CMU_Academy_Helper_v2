@@ -5,7 +5,8 @@ const bodyParser = require("body-parser")
 const mongoModel = require("../../router/lib/mongoModel");
 const mongoMicroservice = require("../../functions/microservices/databaseService");
 const importFile = require("../../functions/importFile");
-const uploadFileCopyPaste = require("../../functions/uploadFileCopyPaste")
+const uploadFileCopyPaste = require("../../functions/uploadFileCopyPaste");
+const deleteCmuFile = require("../../functions/deleteCmuFile");
 
 const router = express.Router()
 
@@ -86,6 +87,12 @@ router.post('/copy-paste', (req, res, next) => {
     uploadFileCopyPaste(req, res, next, req.session.auth_token, req.session.username, path, content)
 }, (req, res) => {
     res.send("hmmm")
+})
+
+router.post('/delete', (req, res, next) => {
+    const { fileOwner, path } = req.body
+
+    deleteCmuFile(req, res, next, req.session.auth_token, req.session.username,path, null)
 })
 
 module.exports = router

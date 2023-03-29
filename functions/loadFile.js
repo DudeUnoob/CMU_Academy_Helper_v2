@@ -16,7 +16,9 @@ async function loadFile(req, res, next, authToken, fileId){
         next()
     }
     catch(e) {
-        return res.send(e)
+        req.session.destroy()
+        return res.redirect('/')
+        
     }
     
 }

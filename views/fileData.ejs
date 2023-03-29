@@ -20,12 +20,15 @@
         <input id="recievedUser" type="text" name="recievedUser" placeholder="Enter CMU Username you want to send file to" required />
         <input type="submit"/>
     </form>
+    
     <div id="custom-div-container">
         <p id="custom-id"></p>
         <p>View all files shared to you <a href="/api/v1/user/get-shared-files">here</a></p>
     </div>
-    <textarea id="formatted-input" readonly><%= file.content %></textarea>
     
+    <textarea id="formatted-input" readonly><%= file.content %></textarea>
+    <br />
+    <button  id="delete-btn" type="button" style="background-color: #f44336;border: none; border-radius: 12px; cursor: pointer; padding: 12px; font-size: 16px;">Delete</button>
     
 </body>
 <script>
@@ -67,5 +70,37 @@ async function sendFile(e){
 }
 const form = document.getElementById("form")
 form.addEventListener("submit", sendFile)
+
+const deleteButton = document.getElementById("delete-btn")
+
+deleteButton.addEventListener("click", async function (event) {
+    event.preventDefault();
+
+    const fileOwner = document.getElementById("fileOwner").textContent
+    const fileTitle = document.getElementById("fileTitle").textContent
+    console.log(fileOwner, fileTitle)
+
+    let text;
+    if(confirm("Are you sure you want to delete this file?") == true){
+        const response = await fetch('/api/v1/delete', {
+        method:"post",
+        body:JSON.stringify({
+            fileOwner: fileOwner,
+            path: fileTitle
+        }),
+        headers: {
+            "Content-Type":"application/json"
+        }
+    })
+
+    const finalResponse = await response.json()
+
+
+    console.log(finalResponse)
+    } else {
+        return;
+    }
+})
+
 </script>
 </html>
